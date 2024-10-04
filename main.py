@@ -1,6 +1,26 @@
 import streamlit as st
 import requests
 import json
+import random
+
+image_urls = [
+    "https://th.bing.com/th/id/OIG1.ixoznfdl83sY8w9vH_w7?w=1024&h=1024&rs=1&pid=ImgDetMain",
+    "https://th.bing.com/th/id/OIG1.DvD9KQm2YcHY2v_it0n.?pid=ImgGn",
+    "https://th.bing.com/th/id/OIG3.IaQ0A1fSDqQubqtrOmUd?w=1024&h=1024&rs=1&pid=ImgDetMain",
+    "https://th.bing.com/th/id/OIG1.FEAFFztq6wdhc7a4b3Yp?pid=ImgGn",
+    "https://th.bing.com/th/id/OIG1.3D88LFkBB6rvmKFKmfFA?pid=ImgGn",
+    "https://th.bing.com/th/id/OIG3.U44c12BWkmdpTOn2sG9M?pid=ImgGn",
+    "https://th.bing.com/th/id/OIG1.h9BDa.Rdb2h8JnUmscoh?pid=ImgGn",
+    "https://th.bing.com/th/id/OIG2.haZc4kkypQP1UcZKs_iZ?pid=ImgGn",
+    "https://th.bing.com/th/id/OIG2.dxf0QaIVeK0RA75teKCx?pid=ImgGn",
+    "https://th.bing.com/th/id/OIG3.r7scAGGn8y_Hwi98lDr4?pid=ImgGn"
+]
+
+# 처음 실행 시, 이미지 선택을 한 번만 실행하도록 설정
+if "selected_image" not in st.session_state:
+    st.session_state.selected_image = random.choice(image_urls)
+
+selected_image = st.session_state.selected_image
 
 # Streamlit의 세션 상태를 사용하여 대화 내용을 저장
 if "chat_history" not in st.session_state:
@@ -77,7 +97,7 @@ completion_executor = CompletionExecutor(
 )
 
 # Set the title of the Streamlit app
-st.markdown('<h1 class="title">역할놀이 챗봇</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="title">딥페이크 피해학생 역할 챗봇</h1>', unsafe_allow_html=True)
 
 # Add radio buttons for grade levels with a default value
 grade_level = st.radio(
@@ -106,7 +126,7 @@ def update_user_age():
 update_user_age()
 
 # 프로필 이미지 URL 정의
-bot_profile_url = "girl1.png"   # 챗봇 프로필 이미지 URL
+bot_profile_url = selected_image   # 챗봇 프로필 이미지 URL
 
 # 스타일 정의 - 전체 페이지에 배경색 강제 적용
 st.markdown(f"""
