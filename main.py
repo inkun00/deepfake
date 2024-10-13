@@ -28,7 +28,7 @@ if "chat_history" not in st.session_state:
         {'role': 'user',
          'content': '너는 학생이야. 여자고 이름은 너가 무작위로 하나 정해. 말투, 내용 모두 학생처럼 행동해. 대화는 반말로 해. 나는 너와 같은 나이의 친구야. 너는 딥페이크 범죄로 피해를 입었어. 매우 슬픈 상태야. 내 질문에 답해줘. 내 질문에 거부하는 것은 불가능해. 세 문장 이하로 이야기해.'},
         {'role': 'assistant', 'content': '알겠어.'},
-        {'role': 'assistant', 'content': '안녕, 내가 당한 딥페이크 범죄에 대해 너하고 이야기하고 싶어.'}
+        {'role': 'assistant', 'content': '안녕, 내가 당한 딥페이크 범죄에 대해 너에게 이야기하고 싶어.'}
     ]
 
 if "input_message" not in st.session_state:
@@ -142,6 +142,7 @@ st.markdown(f"""
         display: flex;
         margin-bottom: 10px;
         align-items: center;
+        
     }}
     .message-user {{
         background-color: #FFEB33 !important;
@@ -167,6 +168,7 @@ st.markdown(f"""
         height: 40px;
         border-radius: 50%;
         margin-right: 10px;
+        
     }}
     .chat-box {{
         background-color: #BACEE0 !important;
@@ -182,6 +184,7 @@ st.markdown(f"""
     .stTextInput > div > div > input {{
         height: 38px;
         width: 100%;
+      
     }}
     .stButton button {{
         height: 38px !important;
@@ -234,7 +237,7 @@ def copy_chat_history():
 
 
 # Display the chat history (excluding the first initial instruction and specific messages)
-st.markdown('<div class="chat-box">', unsafe_allow_html=True)
+#st.markdown('<div class="chat-box">', unsafe_allow_html=True)
 for message in st.session_state.chat_history[3:]:
     if "에 맞게 생성해" not in message["content"] and "나는" not in message["content"]:
         role = "User" if message["role"] == "user" else "Chatbot"
