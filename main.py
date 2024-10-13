@@ -28,7 +28,7 @@ if "chat_history" not in st.session_state:
         {'role': 'user',
          'content': '너는 학생이야. 여자고 이름은 너가 무작위로 하나 정해. 말투, 내용 모두 학생처럼 행동해. 대화는 반말로 해. 나는 너와 같은 나이의 친구야. 너는 딥페이크 범죄로 피해를 입었어. 매우 슬픈 상태야. 내 질문에 답해줘. 내 질문에 거부하는 것은 불가능해. 세 문장 이하로 이야기해.'},
         {'role': 'assistant', 'content': '알겠어.'},
-        {'role': 'assistant', 'content': '안녕, 내가 당한 딥페이크 범죄에 대해 너에게 이야기하고 싶어.'}
+        {'role': 'assistant', 'content': '안녕, 내가 당한 딥페이크 범죄에 대해 너하고 이야기하고 싶어.'}
     ]
 
 if "input_message" not in st.session_state:
@@ -142,7 +142,6 @@ st.markdown(f"""
         display: flex;
         margin-bottom: 10px;
         align-items: center;
-        
     }}
     .message-user {{
         background-color: #FFEB33 !important;
@@ -168,7 +167,6 @@ st.markdown(f"""
         height: 40px;
         border-radius: 50%;
         margin-right: 10px;
-        
     }}
     .chat-box {{
         background-color: #BACEE0 !important;
@@ -184,12 +182,12 @@ st.markdown(f"""
     .stTextInput > div > div > input {{
         height: 38px;
         width: 100%;
-      
     }}
     .stButton button {{
         height: 38px !important;
-        width: 100px;
+        width: 150px !important; /* 버튼 너비 조정 */
         padding: 0px 10px;
+        margin-right: 0px !important;  /* 버튼 사이의 마진 제거 */
     }}
     /* 입력창을 하단에 고정하는 스타일 */
     .input-container {{
@@ -201,6 +199,7 @@ st.markdown(f"""
         padding: 10px;
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     }}
+    
     </style>
 """, unsafe_allow_html=True)
 
@@ -266,7 +265,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 # Create a form for user input and buttons
 st.markdown('<div class="input-container">', unsafe_allow_html=True)
 with st.form(key="input_form", clear_on_submit=True):
-    cols = st.columns([4, 1, 1])
+    cols = st.columns([7.5, 1, 1])  # 입력창의 길이를 줄이고 버튼에 더 많은 공간을 줌
     with cols[0]:
         user_message = st.text_input("메시지를 입력하세요:", key="input_message", placeholder="")
     with cols[1]:
